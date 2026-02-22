@@ -5,25 +5,40 @@
 
 import { Platform } from 'react-native';
 
-const tintColorLight = '#0a7ea4';
-const tintColorDark = '#fff';
+// Cartier-inspired luxury color palette
+const tintColorLight = '#C9A961'; // Cartier gold
+const tintColorDark = '#D4AF37'; // Bright gold
 
 export const Colors = {
   light: {
-    text: '#11181C',
-    background: '#fff',
+    text: '#000000', // Pure black like Cartier
+    background: '#FFFFFF', // Pure white
     tint: tintColorLight,
-    icon: '#687076',
-    tabIconDefault: '#687076',
+    icon: '#666666',
+    tabIconDefault: '#666666',
     tabIconSelected: tintColorLight,
+    primary: '#C9A961', // Cartier gold
+    secondary: '#000000', // Black
+    accent: '#F8F8F8', // Very light gray
+    border: '#E5E5E5', // Subtle border
+    gold: '#C9A961',
+    black: '#000000',
+    white: '#FFFFFF',
   },
   dark: {
-    text: '#ECEDEE',
-    background: '#151718',
+    text: '#FFFFFF', // Pure white
+    background: '#000000', // Pure black
     tint: tintColorDark,
-    icon: '#9BA1A6',
-    tabIconDefault: '#9BA1A6',
+    icon: '#999999',
+    tabIconDefault: '#999999',
     tabIconSelected: tintColorDark,
+    primary: '#D4AF37', // Bright gold
+    secondary: '#FFFFFF', // White
+    accent: '#1A1A1A', // Dark gray
+    border: '#333333', // Dark border
+    gold: '#D4AF37',
+    black: '#000000',
+    white: '#FFFFFF',
   },
 };
 
