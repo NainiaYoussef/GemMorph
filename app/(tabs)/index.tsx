@@ -9,6 +9,7 @@ import {
   KeyboardAvoidingView,
   ActivityIndicator,
   Dimensions,
+  Linking,
 } from 'react-native';
 import { Image } from 'expo-image';
 import * as ImagePicker from 'expo-image-picker';
@@ -237,6 +238,25 @@ export default function HomeScreen() {
       setIsMorphing(false);
     }
   };
+
+  const handleDownloadModel = React.useCallback(() => {
+    const url = morphedModelUrl ?? defaultModelUriRef.current;
+
+    if (!url) {
+      return;
+    }
+
+    if (Platform.OS === 'web') {
+      const anchor = document.createElement('a');
+      anchor.href = url;
+      anchor.download = 'gemmorph-model.glb';
+      document.body.appendChild(anchor);
+      anchor.click();
+      document.body.removeChild(anchor);
+    } else {
+      Linking.openURL(url);
+    }
+  }, [morphedModelUrl]);
 
   const handleSearchFocus = () => {
     searchFocus.value = withSpring(1);
@@ -603,6 +623,24 @@ export default function HomeScreen() {
                       cameraControls={true}
                     />
                   </AnimatedView>
+                  {morphedModelUrl && (
+                    <TouchableOpacity
+                      style={[
+                        styles.downloadButton,
+                        { backgroundColor: colors.primary, borderColor: colors.primary },
+                      ]}
+                      onPress={handleDownloadModel}
+                    >
+                      <ThemedText
+                        style={[
+                          styles.downloadButtonText,
+                          { color: colors.background },
+                        ]}
+                      >
+                        Download 3D model (.glb)
+                      </ThemedText>
+                    </TouchableOpacity>
+                  )}
                 </AnimatedView>
               ) : null}
             </View>
@@ -1058,7 +1096,7 @@ export default function HomeScreen() {
                     },
                   ]}>
                   Our mission is to bridge the gap between traditional jewelry photography and
-                  modern 3D visualization, making it accessible to everyone. Whether you're a
+                  modern 3D visualization, making it accessible to everyone. Whether youre a
                   designer, collector, or enthusiast, GemMorph brings your jewelry to life.
                 </ThemedText>
                 <View style={styles.statsContainer}>
@@ -1139,7 +1177,7 @@ export default function HomeScreen() {
                       marginBottom: 48,
                     },
                   ]}>
-                  We'd love to hear from you. Get in touch with our team.
+                  We d love to hear from you. Get in touch with our team.
                 </ThemedText>
                 <View style={styles.contactMethods}>
                   {[
